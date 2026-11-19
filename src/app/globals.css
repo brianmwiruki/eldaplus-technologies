@@ -1,26 +1,128 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #111111;
+  --foreground: #f5f5f7;
+  --apple-black: #000000;
+  --apple-charcoal: #111111;
+  --apple-card-dark: #161617;
+  --apple-card-border: rgba(255, 255, 255, 0.08);
+  --apple-grey: #86868b;
+  --apple-light-bg: #f5f5f7;
+  --apple-light-card: #ffffff;
+  --apple-light-text: #1d1d1f;
+  --apple-blue: #2997ff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-apple-black: #000000;
+  --color-apple-charcoal: #111111;
+  --color-apple-dark-card: #161617;
+  --color-apple-grey: #86868b;
+  --color-apple-light-bg: #f5f5f7;
+  --color-apple-light-card: #ffffff;
+  --color-apple-light-text: #1d1d1f;
+  --color-apple-blue: #2997ff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Apple typography font stack */
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #111111;
+  color: #f5f5f7;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2e;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a40;
+}
+
+/* Apple-style subtle ambient glow animation */
+@keyframes ambientFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+    opacity: 0.65;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-ambient-float {
+  animation: ambientFloat 10s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+/* Glassmorphism helpers */
+.apple-glass-dark {
+  background: rgba(17, 17, 17, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.apple-glass-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Apple pill button highlight */
+.apple-btn-pill {
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.2), 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.apple-btn-pill:hover {
+  transform: scale(1.02);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.3), 0 4px 16px rgba(41, 151, 255, 0.25);
+}
+
+.apple-btn-pill:active {
+  transform: scale(0.98);
+}
+
+/* Accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
