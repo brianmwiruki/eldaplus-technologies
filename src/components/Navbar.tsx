@@ -31,6 +31,7 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
     { label: "Solutions", href: "#solutions" },
     { label: "Why ELDAPLUS", href: "#why-us" },
     { label: "Credentials", href: "#credentials" },
+    { label: "Contact", href: "#contact" },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

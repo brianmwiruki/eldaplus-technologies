@@ -32,7 +32,7 @@ export default function HeroVisual() {
       height = canvas.parentElement.clientHeight;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     handleResize();
